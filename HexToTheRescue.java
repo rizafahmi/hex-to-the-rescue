@@ -1,3 +1,7 @@
+
+import com.sun.tools.javac.util.StringUtils;
+
+import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
@@ -15,12 +19,31 @@ public class HexToTheRescue {
         }
         return results;
     }
+    private static String[] hexToBinary(String[] strArray) {
+        String[] results = new String[strArray.length];
+        for(int i=0; i<strArray.length; i++) {
+            String output = new BigInteger(strArray[i], 16).toString(2);
+            if (output.length() < 8){
+                int preZero = 8 - output.length();
+                String addingZeroString = new String(new char[preZero]).replace("\0", "0");
+
+                results[i] = addingZeroString + output;
+            } else {
+                results[i] = output;
+            }
+
+        }
+        return results;
+    }
 
     public static void main(String[] args) {
 
         HexToTheRescue httr = new HexToTheRescue();
         String message = "SMS Rulz";
-        System.out.println(httr.stringToHex(message));
+        String[] hexes = httr.stringToHex(message);
+        System.out.println(Arrays.toString(hexes));
+        String[] binaries = httr.hexToBinary(hexes);
+        System.out.print(Arrays.toString(binaries));
 
 
     }
