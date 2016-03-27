@@ -40,11 +40,39 @@ public class HexToTheRescue {
 
         HexToTheRescue httr = new HexToTheRescue();
         String message = "SMS Rulz";
+
         String[] hexes = httr.stringToHex(message);
         System.out.println(Arrays.toString(hexes));
+
         String[] binaries = httr.hexToBinary(hexes);
-        System.out.print(Arrays.toString(binaries));
+        System.out.println(Arrays.toString(binaries));
+
+        String[] takeFirst = httr.takeFirst(binaries);
+        System.out.println(Arrays.toString(takeFirst));
+
+        String[] sevenBins = httr.sevenBins(takeFirst);
+        System.out.println(Arrays.toString(sevenBins));
 
 
+    }
+
+    private String[] sevenBins(String[] takeFirst) {
+        String[] results = new String[takeFirst.length-1];
+
+
+        for (int i=0; i<takeFirst.length-1; i++) {
+            String getBits = takeFirst[i+1].substring(6-i);
+            results[i] = getBits + takeFirst[i].substring(0, 7-i);
+        }
+        return results;
+    }
+
+    private String[] takeFirst(String[] binaries) {
+        String[] results = new String[binaries.length];
+
+        for (int i=0; i<binaries.length; i++) {
+            results[i] = binaries[i].substring(1, binaries.length);
+        }
+        return results;
     }
 }
