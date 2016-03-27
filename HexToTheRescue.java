@@ -11,6 +11,7 @@ public class HexToTheRescue {
         for(int i=0; i<chars.length; i++) {
             String output = Integer.toHexString((int) chars[i]);
             results[i] = output;
+
         }
         return results;
     }
