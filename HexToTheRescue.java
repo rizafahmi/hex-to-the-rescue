@@ -53,7 +53,19 @@ public class HexToTheRescue {
         String[] sevenBins = httr.sevenBins(takeFirst);
         System.out.println(Arrays.toString(sevenBins));
 
+        String[] newHex = httr.binaryToHex(sevenBins);
+        System.out.println("new hex: " + Arrays.toString(newHex));
 
+
+    }
+
+    private String[] binaryToHex(String[] sevenBins) {
+        String[] results = new String[sevenBins.length];
+
+        for(int i=0; i<sevenBins.length; i++) {
+            results[i] = Integer.toHexString(Integer.parseInt(sevenBins[i], 2)).toUpperCase();
+        }
+        return results;
     }
 
     private String[] sevenBins(String[] takeFirst) {
